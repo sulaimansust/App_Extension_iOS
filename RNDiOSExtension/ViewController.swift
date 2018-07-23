@@ -21,5 +21,26 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func startInstagram(_ sender: UIButton) {
+        
+        
+        let appName = "launch-OfficeLens"
+        let appScheme = "\(appName)://app"
+        let appUrl = URL(string: appScheme)
+        
+        if UIApplication.shared.canOpenURL(appUrl! as URL)
+        {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(appUrl!)
+            } else {
+                // Fallback on earlier versions
+            }
+            
+        } else {
+            print("App not installed")
+        }
+        
+    }
+    
 }
 
