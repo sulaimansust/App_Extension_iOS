@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0v-bH-1NZ">
-                                <rect key="frame" x="46" y="308.5" width="283" height="50"/>
+                                <rect key="frame" x="46" y="587" width="283" height="50"/>
                                 <color key="backgroundColor" red="0.70274044689119175" green="0.70274044689119175" blue="0.70274044689119175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="CPc-sk-ucl"/>
+                                    <constraint firstAttribute="height" constant="50" id="RR5-Oc-eBS"/>
                                 </constraints>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,18 +35,28 @@
                                     <action selector="startInstagram:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wt8-Xw-GgS"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGr-Xy-s4T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="H0v-bH-1NZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bqq-bs-nY3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="H0v-bH-1NZ" secondAttribute="trailing" constant="30" id="M0k-1b-k6g"/>
-                            <constraint firstItem="H0v-bH-1NZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Mbv-cS-B0o"/>
-                            <constraint firstItem="H0v-bH-1NZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="XLG-f9-1cG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H0v-bH-1NZ" secondAttribute="trailing" constant="30" id="ATG-jl-nno"/>
+                            <constraint firstItem="H0v-bH-1NZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="Lg4-LD-Ugi"/>
+                            <constraint firstItem="bGr-Xy-s4T" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bwl-91-29w"/>
+                            <constraint firstItem="H0v-bH-1NZ" firstAttribute="top" secondItem="bGr-Xy-s4T" secondAttribute="bottom" constant="61" id="e1I-aP-16j"/>
+                            <constraint firstAttribute="trailing" secondItem="bGr-Xy-s4T" secondAttribute="trailing" id="fdd-UY-mqs"/>
+                            <constraint firstItem="EAN-1T-5zC" firstAttribute="top" secondItem="H0v-bH-1NZ" secondAttribute="bottom" constant="30" id="niY-ZA-TaQ"/>
+                            <constraint firstItem="bGr-Xy-s4T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y9h-eU-rpT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="bGr-Xy-s4T" id="hxk-Do-AxZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>
     </scenes>
 </document>
