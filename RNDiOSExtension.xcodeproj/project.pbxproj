@@ -50,6 +50,7 @@
 		4D6CF1772105AA9F000B355B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D6CF17A2105AA9F000B355B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D6CF17C2105AA9F000B355B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DFD2CC62108478A00293835 /* RNDiOSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RNDiOSExtension.entitlements; sourceTree = "<group>"; };
 		4DFD9E572106E43C000A8E6A /* ImageShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ImageShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFD9E592106E43C000A8E6A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4DFD9E5C2106E43C000A8E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		4D6CF16F2105AA94000B355B /* RNDiOSExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4DFD2CC62108478A00293835 /* RNDiOSExtension.entitlements */,
 				4D6CF1702105AA94000B355B /* AppDelegate.swift */,
 				4D6CF1722105AA94000B355B /* ViewController.swift */,
 				4D6CF1742105AA94000B355B /* Main.storyboard */,
@@ -168,6 +170,11 @@
 				TargetAttributes = {
 					4D6CF16C2105AA94000B355B = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4DFD9E562106E43C000A8E6A = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -396,6 +403,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RNDiOSExtension/RNDiOSExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C2Y54NGRZW;
 				INFOPLIST_FILE = RNDiOSExtension/Info.plist;
@@ -417,6 +425,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RNDiOSExtension/RNDiOSExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C2Y54NGRZW;
 				INFOPLIST_FILE = RNDiOSExtension/Info.plist;

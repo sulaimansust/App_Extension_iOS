@@ -20,6 +20,7 @@ class ShareViewController: SLComposeServiceViewController {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
     
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
+        /*
         if let item = self.extensionContext?.inputItems[0] as? NSExtensionItem{
             for ele in item.attachments!{
                 let itemProvider = ele as! NSItemProvider
@@ -38,31 +39,115 @@ class ShareViewController: SLComposeServiceViewController {
                         }
                         
                         let dict: [String : Any] = ["imgData" :  imgData, "name" : self.contentText]
-                        let userDefault = UserDefaults.standard
-                        userDefault.addSuite(named: "group.mlbd.shareImage")
-                        userDefault.set(dict, forKey: "img")
-                        userDefault.synchronize()
+//                        let userDefault = UserDefaults.standard
+//                        userDefault.addSuite(named: "group.mlbd.shareImage")
+                        if  let userDefault =  UserDefaults.init(suiteName: "group.mlbd.shareImage") {
+
+                            userDefault.set(dict, forKey: "img")
+                            userDefault.synchronize()
+                        }
+                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                        
+                        let appName = "kuno"
+                        let appScheme = "\(appName)://app"
+                        let appUrl = URL(string: appScheme)
+                        
+                        if UIApplication.shared.canOpenURL(appUrl! as URL)
+                        {
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(appUrl!)
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            
+                        } else {
+                            print("App not installed")
+                        }
+
                     })
                 }
             }
         }
+        */
         
-        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+//        let appName = "kuno"
+//        let appScheme = "\(appName)://app"
+//        let appUrl = URL(string: appScheme)
+//
+//        if UIApplication.shared.canOpenURL(appUrl! as URL)
+//        {
+//            if #available(iOS 10.0, *) {
+////                UIApplication.shared.open(appUrl!)
+//            } else {
+//                // Fallback on earlier versions
+//            }
+//
+//        } else {
+//            print("App not installed")
+//        }
         
-        let appName = "kuno"
-        let appScheme = "\(appName)://app"
-        let appUrl = URL(string: appScheme)
+        for item in self.extensionContext!.inputItems {
+            if let inputItem = item as? NSExtensionItem {
 
-        if UIApplication.shared.canOpenURL(appUrl! as URL)
-        {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(appUrl!)
-            } else {
-                // Fallback on earlier versions
+                print("----------------> \(inputItem.attachments?.count)")
+                for provider in inputItem.attachments! {
+                    
+                    if let itemProvider = provider as? NSItemProvider {
+                        if itemProvider.hasItemConformingToTypeIdentifier("public.jpeg") {
+                           itemProvider.loadItem(forTypeIdentifier: "public.jpeg", options: nil, completionHandler: {
+                            (content, error) in
+                                if let data = content {
+                                    print("ext data found")
+                                    if let rawData = data as? NSData {
+                                        print("ext nsdata created")
+
+//                                        let image = UIImage.init(data: url as Data)
+                                         print("---------- convertion success   --------")
+                                        
+                                        
+                                        let imageData = UIImagePNGRepresentation(UIImage.init(data: rawData as Data)!)
+                                        
+                                        if let imgData = imageData {
+                                        
+                                            let dict: [String : Any] = ["imgData" :  imgData, "name" : self.contentText]
+                                            //                        let userDefault = UserDefaults.standard
+                                            //                        userDefault.addSuite(named: "group.mlbd.shareImage")
+                                            if  let userDefault =  UserDefaults.init(suiteName: "group.mlbd.shareImage") {
+                                                
+                                                userDefault.set(dict, forKey: "img")
+                                                userDefault.synchronize()
+                                            }
+                                            print("ext image data saved to default ")
+
+                                        } else {
+                                            print("ext no image data created ")
+
+                                        }
+                                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                                        
+                                        let appName = "kuno"
+                                        let appScheme = "\(appName)://app"
+                                        let appUrl = URL(string: appScheme)
+                                        
+                                        if UIApplication.shared.canOpenURL(appUrl! as URL)
+                                        {
+                                            if #available(iOS 10.0, *) {
+                                                UIApplication.shared.open(appUrl!)
+                                            } else {
+                                                // Fallback on earlier versions
+                                            }
+                                            
+                                        } else {
+                                            print("App not installed")
+                                        }
+                                        
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
             }
-
-        } else {
-            print("App not installed")
         }
         
     }

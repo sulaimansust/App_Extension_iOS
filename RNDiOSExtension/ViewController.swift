@@ -19,11 +19,14 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        let userDefault = UserDefaults.standard
-        userDefault.addSuite(named: "group.mlbd.shareImage")
-        
+//        let userDefault = UserDefaults.standard
+//        userDefault.addSuite(named: "group.mlbd.shareImage")
+        if  let userDefault =  UserDefaults.init(suiteName: "group.mlbd.shareImage") {
+            print("userdefault found")
+
         if let dict = userDefault.value(forKey: "img") as? NSDictionary {
+            print("dict found")
+
             let data = dict.value(forKey: "imgData") as! Data
             let str = dict.value(forKey: "name") as! String
             
@@ -31,6 +34,12 @@ class ViewController: UIViewController {
             
             userDefault.removeObject(forKey: "img")
             userDefault.synchronize()
+        } else {
+            print("no dictionary found")
+        }
+        } else {
+            print("no user default found or created")
+
         }
         
     }

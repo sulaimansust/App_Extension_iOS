@@ -46,11 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(url)
         return true
     }
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        print("--------------------")
-        print(url)
-        return true
-    }
 
 }
 
